@@ -85,3 +85,10 @@ def test_get_top_customers():
     rows = db.get_top_customers(5)
     assert len(rows) == 5
     assert all("Name" in row.keys() and "total" in row.keys() for row in rows)
+
+
+def test_get_artist_by_name():
+    resultats = db.get_artist_by_name("of")
+    noms = [artiste["Name"] for artiste in resultats]
+    assert any("System Of A Down" in nom for nom in noms)
+    assert any("The Office" in nom for nom in noms)
