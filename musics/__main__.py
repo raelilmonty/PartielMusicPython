@@ -5,7 +5,7 @@ import argparse
 from . import cli
 
 parser = argparse.ArgumentParser(
-    prog='muscis',
+    prog='musics',
     description='Display various information about music',
 )
 parser.add_argument(
