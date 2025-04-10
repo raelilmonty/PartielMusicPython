@@ -10,3 +10,9 @@ dependencies = [
   'rich',
   'fastapi[standard]',
 ]
+
+[tool.poetry.extras]
+test = ["pytest", "pytest-cov"]
+
+[tool.pytest.ini_options]
+addopts = "--cov=musics --cov=tests --cov-report=term-missing"

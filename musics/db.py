@@ -230,12 +230,14 @@ def get_top_customers(top=10):
     """
     cursor = get_connection().cursor()
     rows = cursor.execute('''
-        SELECT CONCAT(FirstName, " ", LastName) as name, SUM(UnitPrice * Quantity) as total
+        SELECT FirstName || " " || LastName as name, SUM(UnitPrice * Quantity) as total
         FROM Customer
         JOIN Invoice USING (CustomerId)
         JOIN InvoiceLine USING (InvoiceId)
         GROUP BY Customer.CustomerId
         ORDER BY total DESC
-    ''').fetchall()
+        LIMIT ?
+    ''', (top,)).fetchall()
     cursor.close()
     return rows
+
