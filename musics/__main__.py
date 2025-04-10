@@ -1,6 +1,7 @@
 """CLI public options."""
 
 import argparse
+import subprocess
 
 from . import cli
 
@@ -26,7 +27,7 @@ def main(argv=None):
         raise argparse.ArgumentTypeError(f'{top} is not a positive number')
     match args.command:
         case 'artists':
-            cli.top_artists(top)
+            cli.top_artists(int(top))
         case 'tracks':
             cli.top_tracks(top)
         case 'customers':
