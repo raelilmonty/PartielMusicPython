@@ -1,4 +1,4 @@
-from musics import db
+from musics import db, api
 
 
 def test_artists():
@@ -92,3 +92,9 @@ def test_get_artist_by_name():
     noms = [artiste["Name"] for artiste in resultats]
     assert any("System Of A Down" in nom for nom in noms)
     assert any("The Office" in nom for nom in noms)
+
+
+def test_api_search_artist_by_name():
+    result = api.search_artists(term="of")
+    assert len(result) > 0
+    assert any("of" in artist["Name"].lower() for artist in result)
