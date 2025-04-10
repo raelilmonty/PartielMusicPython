@@ -1,3 +1,5 @@
+import subprocess
+
 from musics import db, api, cli
 
 
@@ -104,3 +106,13 @@ def test_cli_search_artists():
     result = cli.search_artists("of")
     assert "System Of A Down" in result
     assert "The Office" in result
+
+def test_main_artists():
+    # Simulate running the script with the "artists" command and "--top 5"
+    result = subprocess.run(
+        ["python", "-m", "musics", "artists", "--top", "5"],
+        capture_output=True,
+        text=True,
+    )
+    assert result.returncode == 0, f"Error: {result.stderr}"
+    assert "Top 5 artists" in result.stdout
