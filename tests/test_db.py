@@ -102,6 +102,5 @@ def test_api_search_artist_by_name():
 
 def test_cli_search_artists():
     result = cli.search_artists("of")
-
     assert "System Of A Down" in result
     assert "The Office" in result

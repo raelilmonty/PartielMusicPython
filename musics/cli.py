@@ -54,3 +54,18 @@ def top_customers(top=10, file=None):
 
     console = Console(file=file)
     console.print(table)
+
+
+def search_artists(term, file=None):
+    table = Table(title=f"Search results for '{term}'")
+
+    table.add_column("Artist ID", justify="right")
+    table.add_column("Name")
+
+    results = db.get_artist_by_name(term)
+    for artist in results:
+        table.add_row(str(artist["ArtistId"]), artist["Name"])
+
+    console = Console(file=file)
+    console.print(table)
+    return [artist["Name"] for artist in results]
