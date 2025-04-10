@@ -223,20 +223,37 @@ __init__.py). Pour chacun de ces bugs, faites un commit comprenant à
 la fois la correction du bug et un test de non-régression.
 
 6. Dans le fichier `cli.py`, à quoi sert le paramètre « file » ?
+```
+Utiliser File permet de rediriger la sortie de la console dans un fichier par exemple a la place de la sortie normale.
+Il est passé à Console(file=file), pour afficher les résultats dans le file en param.
+```
 
 7. Dans le fichier `__main__.py`, à quoi sert le commentaire « pragma:
    no cover » ?
+```
+Le pragma no cover permet d'indiquer à pytest-cov de ne pas prendre en compte la ligne de code pour le calcul de la couverture.
+```
 
 8. Admettons que vous ayez une couverture de 100% sur l’ensemble de
    l’application. Serait-ce suffisant pour que l’ensemble du code
    fonctionne parfaitement ? Quels autres types de tests pourraient
    être idéalement réalisés ? (Ne les écrivez pas, décrivez-les
    simplement.)
+```
+Non, la couverture de 100% ne garantiraitt pas que le code fonctionne parfaitement. Il est possible d'avoir des tests qui passent mais qui ne testent pas tous les cas possibles. 
+La couverture ne va pas vérifier les cas qui n'ont pas été prévus. 
+Il est possible que il y ait 10 edge cases(exemple) mais que le test n'en prévois que 8 qui sont codés et a vérifier, par conséquent un test peux afficher 100% car tout est couvert dans le périmètre qui lui est attrtibué (8) mais 2 cases ne serait pas couvert. 
+Il faudrait tester tout les cas limites, tester des scénarions complet et donc vérifier le fonctionnement global de l'app.
+```
 
 9. Pour tester l’ensemble de l’application, dans quel ordre
     réaliseriez-vous les tests et pourquoi ? À quoi cela sert-il de
     regrouper une correction de bug et un test de non-régression dans
     un commit commun, ne comprenant que cela ?
+```
+Tests Unitaires->Tests d'intégration->Tests de non régression
+Faire les corrections et tests en un seul commit facilite l'organisation car il est plus facile de tracer le correctif plutot que si il était étalé sur 3 commits différents éspacés dans le temps.
+```
 
 ### Ajoutez une fonctionnalité en TDD
 

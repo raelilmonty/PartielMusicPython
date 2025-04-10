@@ -30,7 +30,7 @@ def top_tracks(top=10, file=None):
     table.add_column('Track')
     table.add_column('Total', justify='right')
 
-    for num, row in enumerate(db.get_top_tracks()):
+    for num, row in enumerate(db.get_top_tracks(top)):
         table.add_row(
             f'{num+1}. {row["Name"]}',
             str(row['total']),
