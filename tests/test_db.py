@@ -1,4 +1,4 @@
-from musics import db, api
+from musics import db, api, cli
 
 
 def test_artists():
@@ -98,3 +98,10 @@ def test_api_search_artist_by_name():
     result = api.search_artists(term="of")
     assert len(result) > 0
     assert any("of" in artist["Name"].lower() for artist in result)
+
+
+def test_cli_search_artists():
+    result = cli.search_artists("of")
+
+    assert "System Of A Down" in result
+    assert "The Office" in result
