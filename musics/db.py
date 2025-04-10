@@ -241,3 +241,20 @@ def get_top_customers(top=10):
     cursor.close()
     return rows
 
+
+def get_artist_by_name(subtext):
+    connection = get_connection()
+    cursor = connection.cursor()
+    lignes = cursor.execute(
+        '''
+        SELECT *
+        FROM Artist
+        WHERE Name LIKE ? COLLATE NOCASE
+        ''',
+        (f"%{subtext}%",)
+    ).fetchall()
+    cursor.close()
+    return lignes
+
+
+
