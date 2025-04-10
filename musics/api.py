@@ -115,3 +115,9 @@ def top_customers(top: int | None = 10):
 
     """
     return db.get_customers(top)
+
+
+@app.get("/artists/search/")
+def search_artists(term: str = ""):
+
+    return db.get_artist_by_name(term)
